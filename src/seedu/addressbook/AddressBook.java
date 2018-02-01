@@ -928,7 +928,8 @@ public class AddressBook {
         final String[] decodedPerson = makePersonFromData(
                 extractNameFromPersonString(encoded),
                 extractPhoneFromPersonString(encoded),
-                extractEmailFromPersonString(encoded)
+                extractEmailFromPersonString(encoded),
+                extractGitHubFromPersonString(encoded)
         );
         // check that the constructed person is valid
         return isPersonDataValid(decodedPerson) ? Optional.of(decodedPerson) : Optional.empty();
@@ -1124,7 +1125,8 @@ public class AddressBook {
     private static boolean isPersonDataValid(String[] person) {
         return isPersonNameValid(person[PERSON_DATA_INDEX_NAME])
                 && isPersonPhoneValid(person[PERSON_DATA_INDEX_PHONE])
-                && isPersonEmailValid(person[PERSON_DATA_INDEX_EMAIL]);
+                && isPersonEmailValid(person[PERSON_DATA_INDEX_EMAIL])
+                && isPersonGitHubValid(person[PERSON_DATA_INDEX_GITHUB]);
     }
 
     /*
@@ -1166,6 +1168,15 @@ public class AddressBook {
         //TODO: implement a more permissive validation
     }
 
+    /**
+     * Returns true if the given string as a legal github name
+     *
+     * @param github id to be validated
+     */
+    private static boolean isPersonGitHubValid(String github) {
+        return github.matches("(\\w|\\s)+");  // github is nonempty mixture of alphabets and whitespace
+        //TODO: implement a more permissive validation
+    }
 
     /*
      * ===============================================
