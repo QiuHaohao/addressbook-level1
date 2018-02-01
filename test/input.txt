@@ -18,28 +18,30 @@
 ##########################################################
 
   # should catch invalid args format
-  add wrong args wrong args
-  add Valid Name p/12345 valid@email.butNoPrefix
-  add Valid Name 12345 e/valid@email.butPhonePrefixMissing
+  add wrong args wrong args wrong args
+  add Valid Name p/12345 valid@email.butNoPrefix g/emailNoPrefix
+  add Valid Name 12345 e/valid@email.butPhonePrefixMissing g/PhoneNoPrefix
+  add Valid Name p/12345 e/valid@email.butGitPrefixMissing GitNoPrefix
   
   # should catch invalid person data
-  add []\[;] p/12345 e/valid@e.mail
-  add Valid Name p/not_numbers e/valid@e.mail
-  add Valid Name p/12345 e/notAnEmail
+  add []\[;] p/12345 e/valid@e.mail g/ValidGit
+  add Valid Name p/not_numbers e/valid@e.mail g/ValidGit
+  add Valid Name p/12345 e/notAnEmail g/inValid..Git
 
   # should add correctly
-  add Adam Brown p/111111 e/adam@gmail.com
+  add Adam Brown p/111111 e/adam@gmail.com g/ValidGit
   list
-  add Betsy Choo p/222222 e/benchoo@nus.edu.sg
+  add Betsy Choo p/222222 e/benchoo@nus.edu.sg g/ValidGit
   list
 
   # order of phone and email should not matter
-  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333
+  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333 g/GitHub
   list
-  add Dickson Ee e/dickson@nus.edu.sg p/444444
+  add Dickson Ee e/dickson@nus.edu.sg g/GitHub p/444444
   list
-  add Esther Potato p/555555 e/esther@notreal.potato
+  add Esther Potato g/GitHub p/555555 e/esther@notreal.potato
   list
+
 
 ##########################################################
 # test find persons command
