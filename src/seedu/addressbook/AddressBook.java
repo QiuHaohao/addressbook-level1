@@ -99,7 +99,8 @@ public class AddressBook {
 
     private static final String PERSON_STRING_REPRESENTATION = "%1$s " // name
                                                             + PERSON_DATA_PREFIX_PHONE + "%2$s " // phone
-                                                            + PERSON_DATA_PREFIX_EMAIL + "%3$s"; // email
+                                                            + PERSON_DATA_PREFIX_EMAIL + "%3$s " // email
+                                                            + PERSON_DATA_PREFIX_GITHUB+ "%4$s"; //GitHub
     private static final String COMMAND_ADD_WORD = "add";
     private static final String COMMAND_ADD_DESC = "Adds a person to the address book.";
     private static final String COMMAND_ADD_PARAMETERS = "NAME "
@@ -791,8 +792,6 @@ public class AddressBook {
      */
     private static void addPersonToAddressBook(String[] person) {
         ALL_PERSONS.add(person);
-        for (String s: person)
-            System.out.println(s);
         savePersonsToFile(getAllPersonsInAddressBook(), storageFilePath);
     }
 
