@@ -992,7 +992,7 @@ public class AddressBook {
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
         final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
         // name is leading substring up to first data prefix symbol
-        int indexOfFirstPrefix = Math.min(indexOfEmailPrefix, indexOfPhonePrefix, indexOFGitHubPrefix);
+        int indexOfFirstPrefix = Math.min(Math.min(indexOfEmailPrefix, indexOfPhonePrefix), indexOFGitHubPrefix);
         return encoded.substring(0, indexOfFirstPrefix).trim();
     }
 
@@ -1008,7 +1008,7 @@ public class AddressBook {
         final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfPhonePrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOFGitHubPrefix).trim(),
@@ -1019,7 +1019,7 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfEmailPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
@@ -1030,7 +1030,7 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOFGitHubPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
             //if phone is the second tag
             if (indexOFPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
@@ -1055,7 +1055,7 @@ public class AddressBook {
         final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfPhonePrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
@@ -1066,7 +1066,7 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfEmailPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOFGitHubPrefix).trim(),
@@ -1077,7 +1077,7 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOFGitHubPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
             //if phone is the second tag
             if (indexOFPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
@@ -1095,7 +1095,7 @@ public class AddressBook {
         final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfPhonePrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfEmailPrefix).trim(),
@@ -1106,7 +1106,7 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfEmailPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfPhonePrefix).trim(),
@@ -1117,7 +1117,7 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOFGitHubPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
             //if phone is the second tag
             if (indexOFPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOFPhonePrefix).trim(),
