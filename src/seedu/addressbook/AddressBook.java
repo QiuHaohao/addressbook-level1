@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
+import java.lang.Math;
 
 /*
  * NOTE : =============================================================
@@ -94,6 +95,7 @@ public class AddressBook {
     // These are the prefix strings to define the data type of a command parameter
     private static final String PERSON_DATA_PREFIX_PHONE = "p/";
     private static final String PERSON_DATA_PREFIX_EMAIL = "e/";
+    private static final String PERSON_DATA_PREFIX_GITHUB = "g/";
 
     private static final String PERSON_STRING_REPRESENTATION = "%1$s " // name
                                                             + PERSON_DATA_PREFIX_PHONE + "%2$s " // phone
@@ -986,18 +988,42 @@ public class AddressBook {
     private static String extractPhoneFromPersonString(String encoded) {
         final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
+        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
 
-        // phone is last arg, target is from prefix to end of string
-        if (indexOfPhonePrefix > indexOfEmailPrefix) {
-            return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
-
-        // phone is middle arg, target is from own prefix to next prefix
-        } else {
-            return removePrefixSign(
-                    encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
-                    PERSON_DATA_PREFIX_PHONE);
+        //if phone is the first tag
+        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
+            //if github is the second tag
+            if (indexOFGitHubPrefix < indexOfEmailPrefix){
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOFGitHubPrefix).trim(),
+                        PERSON_DATA_PREFIX_PHONE);
+            } else{
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
+                        PERSON_DATA_PREFIX_PHONE);
+            }
         }
+        //if email is the first tag
+        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfEmailPrefix){
+            //if github is the second tag
+            if (indexOFGitHubPrefix < indexOfPhonePrefix){
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
+                        PERSON_DATA_PREFIX_PHONE);
+            } else{
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOFGitHubPrefix).trim(),
+                        PERSON_DATA_PREFIX_PHONE);
+            }
+        }
+        //if github is the first tag
+        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOFGitHubPrefix){
+            //if phone is the second tag
+            if (indexOFPhonePrefix < indexOfEmailPrefix){
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
+                        PERSON_DATA_PREFIX_PHONE);
+            } else{
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
+                        PERSON_DATA_PREFIX_PHONE);
+            }
+        }
+
     }
 
     /**
