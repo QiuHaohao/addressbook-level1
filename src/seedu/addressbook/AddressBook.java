@@ -1005,13 +1005,13 @@ public class AddressBook {
     private static String extractPhoneFromPersonString(String encoded) {
         final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
-        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
+        final int indexOfGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfPhonePrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfPhonePrefix){
             //if github is the second tag
-            if (indexOFGitHubPrefix < indexOfEmailPrefix){
-                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOFGitHubPrefix).trim(),
+            if (indexOfGitHubPrefix < indexOfEmailPrefix){
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfGitHubPrefix).trim(),
                         PERSON_DATA_PREFIX_PHONE);
             } else{
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
@@ -1019,20 +1019,20 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
-            if (indexOFGitHubPrefix < indexOfPhonePrefix){
+            if (indexOfGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
                         PERSON_DATA_PREFIX_PHONE);
             } else{
-                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOFGitHubPrefix).trim(),
+                return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfGitHubPrefix).trim(),
                         PERSON_DATA_PREFIX_PHONE);
             }
         }
         //if github is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfGitHubPrefix){
             //if phone is the second tag
-            if (indexOFPhonePrefix < indexOfEmailPrefix){
+            if (indexOfPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
                         PERSON_DATA_PREFIX_PHONE);
             } else{
@@ -1040,7 +1040,6 @@ public class AddressBook {
                         PERSON_DATA_PREFIX_PHONE);
             }
         }
-
     }
 
     /**
@@ -1052,24 +1051,24 @@ public class AddressBook {
     private static String extractEmailFromPersonString(String encoded) {
         final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
-        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
+        final int indexOfGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfPhonePrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfPhonePrefix){
             //if github is the second tag
-            if (indexOFGitHubPrefix < indexOfEmailPrefix){
+            if (indexOfGitHubPrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
                         PERSON_DATA_PREFIX_EMAIL);
             } else{
-                return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOFGitHubPrefix).trim(),
+                return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOfGitHubPrefix).trim(),
                         PERSON_DATA_PREFIX_EMAIL);
             }
         }
         //if email is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
-            if (indexOFGitHubPrefix < indexOfPhonePrefix){
-                return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOFGitHubPrefix).trim(),
+            if (indexOfGitHubPrefix < indexOfPhonePrefix){
+                return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOfGitHubPrefix).trim(),
                         PERSON_DATA_PREFIX_EMAIL);
             } else{
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim(),
@@ -1077,9 +1076,9 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
+        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfGitHubPrefix){
             //if phone is the second tag
-            if (indexOFPhonePrefix < indexOfEmailPrefix){
+            if (indexOfPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
                         PERSON_DATA_PREFIX_EMAIL);
             } else{
@@ -1119,8 +1118,8 @@ public class AddressBook {
         //if github is the first tag
         if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
             //if phone is the second tag
-            if (indexOFPhonePrefix < indexOfEmailPrefix){
-                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOFPhonePrefix).trim(),
+            if (indexOfPhonePrefix < indexOfEmailPrefix){
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfPhonePrefix).trim(),
                         PERSON_DATA_PREFIX_GITHUB);
             } else{
                 return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfEmailPrefix).trim(),
