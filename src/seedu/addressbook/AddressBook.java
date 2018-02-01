@@ -104,8 +104,8 @@ public class AddressBook {
     private static final String COMMAND_ADD_DESC = "Adds a person to the address book.";
     private static final String COMMAND_ADD_PARAMETERS = "NAME "
                                                       + PERSON_DATA_PREFIX_PHONE + "PHONE_NUMBER "
-                                                      + PERSON_DATA_PREFIX_EMAIL + "EMAIL"
-                                                      + PERSON_DATA_PREFIX_EMAIL + "GITHUB";
+                                                      + PERSON_DATA_PREFIX_EMAIL + "EMAIL "
+                                                      + PERSON_DATA_PREFIX_GITHUB + "GITHUB";
     private static final String COMMAND_ADD_EXAMPLE = COMMAND_ADD_WORD + " John Doe p/98765432 e/johnd@gmail.com g/JohnDoe888";
 
     private static final String COMMAND_FIND_WORD = "find";
@@ -791,6 +791,8 @@ public class AddressBook {
      */
     private static void addPersonToAddressBook(String[] person) {
         ALL_PERSONS.add(person);
+        for (String s: person)
+            System.out.println(s);
         savePersonsToFile(getAllPersonsInAddressBook(), storageFilePath);
     }
 
@@ -901,7 +903,7 @@ public class AddressBook {
      */
     private static String encodePersonToString(String[] person) {
         return String.format(PERSON_STRING_REPRESENTATION,
-                getNameFromPerson(person), getPhoneFromPerson(person), getEmailFromPerson(person));
+                getNameFromPerson(person), getPhoneFromPerson(person), getEmailFromPerson(person), getGitHubFromPerson(person));
     }
 
     /**
@@ -1019,7 +1021,7 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfEmailPrefix){
+        else if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
             if (indexOfGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, encoded.length()).trim(),
@@ -1030,7 +1032,7 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfGitHubPrefix){
+        else {
             //if phone is the second tag
             if (indexOfPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfPhonePrefix, indexOfEmailPrefix).trim(),
@@ -1065,7 +1067,7 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfEmailPrefix){
+        else if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
             if (indexOfGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOfGitHubPrefix).trim(),
@@ -1076,7 +1078,7 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOfGitHubPrefix) == indexOfGitHubPrefix){
+        else{
             //if phone is the second tag
             if (indexOfPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, encoded.length()).trim(),
@@ -1105,7 +1107,7 @@ public class AddressBook {
             }
         }
         //if email is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
+        else if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOfEmailPrefix){
             //if github is the second tag
             if (indexOFGitHubPrefix < indexOfPhonePrefix){
                 return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfPhonePrefix).trim(),
@@ -1116,7 +1118,7 @@ public class AddressBook {
             }
         }
         //if github is the first tag
-        if (Math.min(Math.min(indexOfPhonePrefix,indexOfEmailPrefix),indexOFGitHubPrefix) == indexOFGitHubPrefix){
+        else {
             //if phone is the second tag
             if (indexOfPhonePrefix < indexOfEmailPrefix){
                 return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfPhonePrefix).trim(),
