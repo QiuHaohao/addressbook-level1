@@ -974,7 +974,7 @@ public class AddressBook {
     private static String extractNameFromPersonString(String encoded) {
         final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
-        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
+        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
         // name is leading substring up to first data prefix symbol
         int indexOfFirstPrefix = Math.min(indexOfEmailPrefix, indexOfPhonePrefix, indexOFGitHubPrefix);
         return encoded.substring(0, indexOfFirstPrefix).trim();
@@ -989,7 +989,7 @@ public class AddressBook {
     private static String extractPhoneFromPersonString(String encoded) {
         final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
-        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
+        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
         if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
@@ -1036,7 +1036,7 @@ public class AddressBook {
     private static String extractEmailFromPersonString(String encoded) {
         final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
         final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
-        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
+        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
 
         //if phone is the first tag
         if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
@@ -1069,6 +1069,46 @@ public class AddressBook {
             } else{
                 return removePrefixSign(encoded.substring(indexOfEmailPrefix, indexOfPhonePrefix).trim(),
                         PERSON_DATA_PREFIX_EMAIL);
+            }
+        }
+    }
+
+    private static String extractGitHubFromPersonString(String encoded) {
+        final int indexOfPhonePrefix = encoded.indexOf(PERSON_DATA_PREFIX_PHONE);
+        final int indexOfEmailPrefix = encoded.indexOf(PERSON_DATA_PREFIX_EMAIL);
+        final int indexOFGitHubPrefix = encoded.indexOf(PERSON_DATA_PREFIX_GITHUB);
+
+        //if phone is the first tag
+        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfPhonePrefix){
+            //if github is the second tag
+            if (indexOFGitHubPrefix < indexOfEmailPrefix){
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfEmailPrefix).trim(),
+                        PERSON_DATA_PREFIX_GITHUB);
+            } else{
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, encoded.length()).trim(),
+                        PERSON_DATA_PREFIX_GITHUB);
+            }
+        }
+        //if email is the first tag
+        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOfEmailPrefix){
+            //if github is the second tag
+            if (indexOFGitHubPrefix < indexOfPhonePrefix){
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfPhonePrefix).trim(),
+                        PERSON_DATA_PREFIX_GITHUB);
+            } else{
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, encoded.length()).trim(),
+                        PERSON_DATA_PREFIX_GITHUB);
+            }
+        }
+        //if github is the first tag
+        if (Math.min(indexOfPhonePrefix,indexOfEmailPrefix,indexOFGitHubPrefix) == indexOFGitHubPrefix){
+            //if phone is the second tag
+            if (indexOFPhonePrefix < indexOfEmailPrefix){
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOFPhonePrefix).trim(),
+                        PERSON_DATA_PREFIX_GITHUB);
+            } else{
+                return removePrefixSign(encoded.substring(indexOFGitHubPrefix, indexOfEmailPrefix).trim(),
+                        PERSON_DATA_PREFIX_GITHUB);
             }
         }
     }
