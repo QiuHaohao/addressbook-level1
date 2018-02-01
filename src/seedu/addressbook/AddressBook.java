@@ -442,7 +442,10 @@ public class AddressBook {
      */
     private static String getMessageForSuccessfulAddPerson(String[] addedPerson) {
         return String.format(MESSAGE_ADDED,
-                getNameFromPerson(addedPerson), getPhoneFromPerson(addedPerson), getEmailFromPerson(addedPerson));
+                getNameFromPerson(addedPerson),
+                getPhoneFromPerson(addedPerson),
+                getEmailFromPerson(addedPerson),
+                getGitHubFromPerson(addedPerson));
     }
 
     /**
@@ -863,6 +866,14 @@ public class AddressBook {
         return person[PERSON_DATA_INDEX_EMAIL];
     }
 
+    /**
+     * Returns given person's GitHub id
+     *
+     * @param person whose GitHub id you want
+     */
+    private static String getGitHubFromPerson(String[] person) {
+        return person[PERSON_DATA_INDEX_GITHUB];
+    }
     /**
      * Creates a person from the given data.
      *
